@@ -167,7 +167,7 @@ impl Client {
             where Auth: FnOnce(&[AuthMethod]) -> Option<AuthChoice> {
         let version = protocol::Version::Rfb38;
 
-        println!("Set custom version!")
+        println!("Set custom version!");
         let security_types = match version {
             protocol::Version::Rfb33 => {
                 let security_type = protocol::SecurityType::read_from(&mut stream)?;
