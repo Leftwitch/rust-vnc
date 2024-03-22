@@ -165,11 +165,9 @@ impl Client {
     pub fn from_tcp_stream<Auth>(mut stream: TcpStream, shared: bool,
                                  auth: Auth) -> Result<Client>
             where Auth: FnOnce(&[AuthMethod]) -> Option<AuthChoice> {
-        let version = protocol::Version::read_from(&mut stream)?;
-        debug!("<- Version::{:?}", version);
-        debug!("-> Version::{:?}", version);
-        protocol::Version::write_to(&version, &mut stream)?;
+        let version = protocol::Version::Rfb38;
 
+        println!("Set custom version!")
         let security_types = match version {
             protocol::Version::Rfb33 => {
                 let security_type = protocol::SecurityType::read_from(&mut stream)?;
